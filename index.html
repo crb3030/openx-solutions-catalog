@@ -1,583 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenX Solutions Catalog</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px;
-            min-height: 100vh;
-        }
-        
-        .catalog-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #0066CC 0%, #004999 100%);
-            color: white;
-            padding: 50px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-        
-        .header p {
-            font-size: 20px;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            padding: 50px;
-            background: #f8f9fa;
-        }
-        
-        .solution-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 4px solid #0066CC;
-            position: relative;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            cursor: pointer;
-        }
-        
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-left-color: #004999;
-        }
-        
-        .solution-card .icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0066CC 0%, #004999 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: white;
-        }
-        
-        .solution-card h3 {
-            font-size: 18px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        
-        .solution-card p {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .status-completed {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-progress {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-not-started {
-            background: #e7e7e7;
-            color: #666;
-        }
-        
-        .category-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #f0f0f0;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            color: #666;
-            font-weight: 600;
-        }
-        
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 30px 50px;
-            text-align: center;
-        }
-        
-        .footer p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            background: white;
-            padding: 30px 50px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #0066CC;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 13px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenX Solutions Catalog</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .view-details {
-            display: inline-block;
-            margin-top: 10px;
-            color: #0066CC;
-            font-size: 12px;
-            font-weight: 600;
-            text-decoration: none;
-        }
+    :root {
+      --ox-navy:   #0a1628;
+      --ox-blue:   #0057FF;
+      --ox-accent: #00c2ff;
+      --ox-muted:  #6b7a99;
+      --ox-line:   rgba(255,255,255,0.08);
+      --card-bg:   #111c30;
+      --body-bg:   #07101f;
+    }
 
-        .solution-card:hover .view-details {
-            text-decoration: underline;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            animation: fadeIn 0.3s;
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--body-bg);
+      color: #e2e8f8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    /* ── HEADER ─────────────────────────────── */
+    header {
+      position: relative;
+      padding: 72px 60px 56px;
+      border-bottom: 1px solid var(--ox-line);
+      overflow: hidden;
+    }
 
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 40px;
-            border-radius: 12px;
-            width: 80%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideIn 0.3s;
-        }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% -10%, rgba(0,87,255,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 10% 110%, rgba(0,194,255,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
 
-        @keyframes slideIn {
-            from { 
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ox-accent);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 20px;
-        }
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      color: #fff;
+      max-width: 680px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
 
-        .close:hover {
-            color: #000;
-        }
+    header h1 em {
+      font-style: italic;
+      color: var(--ox-accent);
+    }
 
-        .modal-header {
-            border-bottom: 2px solid #0066CC;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
+    .header-sub {
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ox-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
 
-        .modal-header h2 {
-            color: #0066CC;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
+    .header-pills {
+      margin-top: 32px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.52s;
+    }
 
-        .modal-section {
-            margin-bottom: 30px;
-        }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0,87,255,0.10);
+      border: 1px solid rgba(0,87,255,0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12.5px;
+      color: #a0b4e0;
+    }
 
-        .modal-section h3 {
-            color: #0066CC;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+    .pill-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--ox-accent);
+      display: inline-block;
+      flex-shrink: 0;
+    }
 
-        .modal-section p,
-        .modal-section ul {
-            color: #333;
-            line-height: 1.8;
-            font-size: 15px;
-        }
+    /* ── ABOUT STRIP ─────────────────────────── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--ox-line);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.62s;
+    }
 
-        .modal-section ul {
-            margin-left: 20px;
-        }
+    .about-cell {
+      padding: 32px 60px;
+      border-right: 1px solid var(--ox-line);
+    }
+    .about-cell:last-child { border-right: none; }
 
-        .modal-section li {
-            margin-bottom: 8px;
-        }
-    </style>
+    .about-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ox-accent);
+      margin-bottom: 9px;
+    }
+
+    .about-cell p {
+      font-size: 13.5px;
+      line-height: 1.72;
+      color: #7a8db0;
+      font-weight: 300;
+    }
+
+    /* ── CATALOG AREA ────────────────────────── */
+    .catalog-wrap {
+      padding: 52px 60px 60px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ox-muted);
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ox-line);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.7s;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    /* ── CARD ────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      padding: 30px 34px 48px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.22s ease, border-color 0.22s ease;
+      border: 1px solid transparent;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ox-blue), var(--ox-accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s ease;
+    }
+
+    .card:hover {
+      background: #132036;
+      border-color: rgba(0,87,255,0.18);
+    }
+    .card:hover::after { transform: scaleX(1); }
+
+    .card-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--ox-blue);
+      margin-bottom: 12px;
+    }
+
+    .card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 21px;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .card-blurb {
+      font-size: 13px;
+      line-height: 1.72;
+      color: #6a7d9e;
+      font-weight: 300;
+    }
+
+    .card-cta {
+      position: absolute;
+      bottom: 22px; right: 28px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ox-blue);
+      opacity: 0;
+      transform: translateX(-5px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      letter-spacing: 0.04em;
+    }
+    .card:hover .card-cta { opacity: 1; transform: translateX(0); }
+
+    /* ── MODAL ───────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 9, 18, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: #0d1b2e;
+      border: 1px solid rgba(0,87,255,0.22);
+      border-radius: 3px;
+      max-width: 660px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 48px 52px;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.28s ease;
+    }
+    .overlay.open .modal { transform: translateY(0); }
+
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: none; border: none;
+      color: var(--ox-muted);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #fff; }
+
+    .modal-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ox-accent);
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 22px;
+    }
+
+    .modal-rule {
+      height: 1px;
+      background: var(--ox-line);
+      margin-bottom: 22px;
+    }
+
+    .modal-body {
+      font-size: 15px;
+      line-height: 1.78;
+      color: #8090b2;
+      font-weight: 300;
+    }
+
+    .modal-in-practice {
+      margin-top: 24px;
+      padding: 18px 22px;
+      border-left: 2px solid var(--ox-blue);
+      background: rgba(0,87,255,0.06);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .modal-in-practice-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ox-accent);
+      margin-bottom: 8px;
+    }
+
+    .modal-in-practice p {
+      font-size: 13.5px;
+      line-height: 1.72;
+      color: #7080a0;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--ox-line);
+      padding: 28px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer p { font-size: 12px; color: var(--ox-muted); }
+    footer strong { color: #a0b4e0; font-weight: 500; }
+
+    /* ── ANIMATIONS ──────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1)  { animation-delay: 0.08s; }
+    .card:nth-child(2)  { animation-delay: 0.14s; }
+    .card:nth-child(3)  { animation-delay: 0.20s; }
+    .card:nth-child(4)  { animation-delay: 0.26s; }
+    .card:nth-child(5)  { animation-delay: 0.32s; }
+    .card:nth-child(6)  { animation-delay: 0.38s; }
+    .card:nth-child(7)  { animation-delay: 0.44s; }
+    .card:nth-child(8)  { animation-delay: 0.50s; }
+    .card:nth-child(9)  { animation-delay: 0.56s; }
+    .card:nth-child(10) { animation-delay: 0.62s; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 768px) {
+      header, .catalog-wrap, footer { padding-left: 28px; padding-right: 28px; }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-cell { padding: 24px 28px; border-right: none; border-bottom: 1px solid var(--ox-line); }
+      .about-cell:last-child { border-bottom: none; }
+      .modal { padding: 32px 28px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="catalog-container">
-        <div class="header">
-            <h1>OpenX Solutions Catalog</h1>
-            <p>Innovative Ad Tech Solutions for Publishers & Advertisers</p>
-        </div>
-        
-        <div class="stats-bar">
-            <div class="stat">
-                <div class="stat-number">18</div>
-                <div class="stat-label">Total Solutions</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Live & Ready</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">14</div>
-                <div class="stat-label">In Development</div>
-            </div>
-        </div>
-        
-        <div class="solutions-grid">
-            <a href="#" class="solution-card" onclick="openModal('audience-modeled'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">🎯</div>
-                <h3>Audience Modeled Sitelists</h3>
-                <p>Cookie-free audience reach through data-led inventory curation using OAID pooling</p>
-                <span class="status-badge status-progress">In Progress</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('key-value'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">🔄</div>
-                <h3>Key Value Sync</h3>
-                <p>Simplify DSP setup from 1000+ line items to just 5 using dynamic creative triggers</p>
-                <span class="status-badge status-completed">Completed</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('trending-news'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">📰</div>
-                <h3>Trending News Curation</h3>
-                <p>Brand-safe news targeting with granular content filtering and transparency</p>
-                <span class="status-badge status-completed">Completed</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('quality-scoring'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">⭐</div>
-                <h3>Inventory Quality Scoring</h3>
-                <p>Empirical quality benchmarking for data-driven inventory curation</p>
-                <span class="status-badge status-completed">Completed</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('personalyze'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">🧬</div>
-                <h3>Personalyze</h3>
-                <p>Social behavioral data for innovative, non-standard audience curation</p>
-                <span class="status-badge status-not-started">Not Started</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('rmn'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">🛒</div>
-                <h3>Retail Media Network</h3>
-                <p>Programmatic delivery across retail media for commerce-driven campaigns</p>
-                <span class="status-badge status-not-started">Not Started</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('pub-direct'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">📺</div>
-                <h3>Pub-Direct Inventory Portal</h3>
-                <p>Access to premium CTV, video, and audio through direct-sold partnerships</p>
-                <span class="status-badge status-not-started">Not Started</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('wrap-report'); return false;">
-                <div class="category-tag">Internal</div>
-                <div class="icon">📊</div>
-                <h3>Wrap Report</h3>
-                <p>Comprehensive campaign reports with benchmarks and optimization insights</p>
-                <span class="status-badge status-not-started">Not Started</span>
-                <span class="view-details">View Details →</span>
-            </a>
-            
-            <a href="#" class="solution-card" onclick="openModal('political'); return false;">
-                <div class="category-tag">External</div>
-                <div class="icon">🗳️</div>
-                <h3>Political Spend Dashboard</h3>
-                <p>Real-time competitive intelligence for political campaigns by geography</p>
-                <span class="status-badge status-not-started">Not Started</span>
-                <span class="view-details">View Details →</span>
-            </a>
-        </div>
-        
-        <div class="footer">
-            <p>OpenX Solutions Team • Driving Innovation in Programmatic Advertising • January 2026</p>
-        </div>
+
+<!-- HEADER -->
+<header>
+  <p class="header-eyebrow">OpenX Solutions Team — Q1 2026</p>
+  <h1>What We're <em>Building</em></h1>
+  <p class="header-sub">A consultative, innovation-focused team solving problems outside the standard product roadmap — building tailored, scalable solutions for real business challenges.</p>
+  <div class="header-pills">
+    <div class="pill"><span class="pill-dot"></span>10 Active Solutions</div>
+    <div class="pill"><span class="pill-dot"></span>Internal Overview — Not for Distribution</div>
+    <div class="pill"><span class="pill-dot"></span>Craig Becher &amp; Monica Fleming</div>
+  </div>
+</header>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-cell">
+    <div class="about-label">Who We Are</div>
+    <p>The Solutions team is a consultative, innovation-focused function that solves problems outside the standard product roadmap — building tailored, scalable solutions for the real business challenges clients and agencies face.</p>
+  </div>
+  <div class="about-cell">
+    <div class="about-label">How to Engage Us</div>
+    <p>Bring us in early when you're hearing a persistent, unsolved problem in a client conversation. We'll join the follow-up with you, lead discovery and design, and keep you as the relationship owner throughout.</p>
+  </div>
+</div>
+
+<!-- CATALOG GRID -->
+<div class="catalog-wrap">
+  <div class="section-label">Solutions Portfolio — Examples, not exhaustive</div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Currently in active discovery across: <strong>McDonald's, Expedia, WBD, Horizon, MiQ, Keurig/Dr. Pepper, Amazon, Signet, TCCC</strong></p>
+  <p>Primary Contacts: <strong>Craig Becher &amp; Monica Fleming</strong></p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal(null, true)">&#215;</button>
+    <div class="modal-num" id="modal-num"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-rule"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-in-practice" id="modal-practice" style="display:none">
+      <div class="modal-in-practice-label">In Practice</div>
+      <p id="modal-practice-text"></p>
     </div>
+  </div>
+</div>
 
-    <!-- Modal -->
-    <div id="solutionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
+<script>
+// ── SOLUTION DATA ──────────────────────────────────────────────
+// To add, remove, or edit a solution:
+//   - Each object has: name, blurb, and optionally inPractice
+//   - Keep blurbs concise — 2-3 sentences max
+// ──────────────────────────────────────────────────────────────
+const solutions = [
+  {
+    name: "Audience Modeled Sitelists",
+    blurb: "Clients need cookie-free ways to reach their audience at scale and want transparency into how targeting lists are built — something third-party vendors can't provide. We pool OpenX Audience IDs from correlative segments and index them against our inventory to identify the domains that over-index for that audience, generating data-led sitelists with full methodological clarity."
+  },
+  {
+    name: "Key Value Sync",
+    blurb: "Advertisers with regional or local campaigns often manage hundreds of DSP line items, making setup and optimization unwieldy. By passing bid stream signals as triggers for dynamic creative delivery, we collapse a campaign into a handful of line items while maintaining proper creative routing, regional spend, and full campaign control.",
+    inPractice: "Expedia had proven contextual creative based on browsing locale drove performance, but scaling it across 100+ global markets required hundreds of individual deals. Key Value Sync reduced the entire structure to 3–5 line items — same strategy, same creative routing, fraction of the operational lift."
+  },
+  {
+    name: "Trending News Curation",
+    blurb: "Advertisers are leaving significant scale on the table by avoiding news inventory because they don't trust their brand safety tools to filter it accurately. Through our partnership with Sightly, we curate trending news PMPs with granular, article-level content controls — giving buyers access to high-reach news environments with full transparency into what's included and what's filtered out."
+  },
+  {
+    name: "Inventory Quality Scoring",
+    blurb: "Buyers increasingly treat inventory quality as a core performance metric, but most SSPs lack a rigorous, data-driven way to measure and communicate it. We score supply across multiple signals — viewability, IVT, engagement, brand safety — and share that data with both publishers to drive improvements and buyers to enable quality-based curation and optimization."
+  },
+  {
+    name: "Algo Sync",
+    blurb: "We build deals without visibility into what signals DSP algorithms — or the custom third-party algos like Scibids and Chalice that replace them — actually prioritize. By understanding those value signals, we can structure our deals around what their systems weight most heavily, increasing bid rate, win rate, and overall deal performance for clients using those platforms."
+  },
+  {
+    name: "DealStack",
+    blurb: "Most deals are built as a single flat construct — one deal, one tactic. But OpenX can reach any audience in multiple ways: sitelists, data segments, lookalike models, first-party data, contextual segments, and more. DealStack packages all relevant outputs as child deal IDs under a single parent deal, giving buyers one simple setup while maximizing every biddable opportunity available against their audience."
+  },
+  {
+    name: "BrandStack",
+    blurb: "Multi-brand advertisers like Signet run separate campaigns for each brand — Kay, Zales, Jared — creating redundant setup, siloed reporting, and audience cannibalization when the same user gets hit by multiple brands at once. BrandStack consolidates the portfolio into a single campaign structure with decisioning logic that routes each impression to the right brand, prevents cross-brand overexposure, and delivers unified reporting with brand-level breakouts."
+  },
+  {
+    name: "OmniSignal Intelligence",
+    blurb: "Omnichannel retailers measure success across Online ROAS and Omni ROAS, but their funnel — CTV exposure to store visit to conversion — is measured in disconnected silos. OpenX can stitch that journey together using our supply footprint, foot traffic partners, and conversion signals to connect exposure to visit to purchase. The result is a truer picture of omni influence and a stronger case for OpenX's contribution to in-store outcomes, not just digital ones."
+  },
+  {
+    name: "FlowFilter",
+    blurb: "Most campaign optimization is reactive — reports come in, teams review them, and changes get made weeks later. FlowFilter removes that lag by automatically ingesting performance data from any measurement partner (Attain, IQVIA, Nielsen, Foursquare, client CRM), analyzing it against campaign KPIs, and updating deal targeting and traffic shaping in real time. The campaign learns and improves continuously without waiting on a manual optimization cycle."
+  },
+  {
+    name: "SeedAgent",
+    blurb: "A prompt-based audience generation tool that uses natural language to build seed audiences from contextual, transactional, demographic, and geographic data — all combinable in a single output. Seeds can be uploaded via UI and extended through lookalike modeling for activation. Best suited for manual POC testing today; productionized usage requires additional development post a 4–8 week validation period."
+  }
+];
 
-    <script>
-        const solutions = {
-            'audience-modeled': {
-                title: 'Audience Modeled Sitelists',
-                status: 'In Progress',
-                problem: 'Clients are constantly looking for ways to drive incremental reach of their audience, activate without cookies, and deliver against high-indexing site lists.',
-                solution: 'Take a selection of correlative audience segments to pool our OAIDs. This then allows us to overlay these IDs against our inventory to index which domains are most valuable for this particular audience/interest.',
-                benefits: [
-                    '20-35% CPM lift on modeled inventory',
-                    'Cookie-free audience monetization',
-                    'Competitive differentiation in market',
-                    'Transparent methodology vs. 3P solutions'
-                ],
-                timeline: '6-8 weeks to launch'
-            },
-            'key-value': {
-                title: 'Key Value Sync',
-                status: 'Completed - GTM Ready',
-                problem: 'Many advertisers have highly complex DSP setups with 100s to 1000s of line items, making campaign management extremely difficult.',
-                solution: 'Enable bid stream data as a trigger for creative delivery to simplify setup down to only a handful of line items while maintaining appropriate creative delivery.',
-                benefits: [
-                    '95%+ reduction in line item complexity',
-                    'Faster campaign setup (days vs. weeks)',
-                    'Real-time creative optimization',
-                    'Regional spend control without manual management'
-                ],
-                timeline: '3-4 weeks to implement'
-            },
-            'trending-news': {
-                title: 'Trending News Curation',
-                status: 'Completed',
-                problem: 'Advertisers lack confidence in their brand safety vendors to identify and filter out negative news content, leaving programmatic scale on the table.',
-                solution: 'PMP Curation of Trending Moments / Trending News that incorporates granular content-level controls to filter out non-suitable inventory transparently.',
-                benefits: [
-                    'Unlock 30-50% more monetizable news inventory',
-                    'Premium CPMs for brand-safe news',
-                    'Brand safety confidence with transparency',
-                    'Access to trending moments reach'
-                ],
-                timeline: '3-4 weeks to launch'
-            },
-            'quality-scoring': {
-                title: 'Inventory Quality Scoring',
-                status: 'Completed',
-                problem: 'Buyers demand greater transparency and data-driven curation, yet OpenX currently lacks an empirical solution for scoring inventory quality.',
-                solution: 'Collaborate with supply partners to flag low-scoring properties for preemptive updates, providing buyers with independent quality benchmarks.',
-                benefits: [
-                    'Data-driven quality improvement for publishers',
-                    'Independent quality benchmarking for buyers',
-                    'Reduced waste on low-quality inventory',
-                    'Performance predictability'
-                ],
-                timeline: '4-5 weeks to launch'
-            },
-            'personalyze': {
-                title: 'Personalyze',
-                status: 'Not Started',
-                problem: 'Little innovation in the curation space leads to standard inventory and data curation across the board.',
-                solution: 'Personalyze provides social behavioral data to increase data-led curation using non-standard methods that speak to topics and inventory resonating with key audiences.',
-                benefits: [
-                    'Differentiated inventory positioning',
-                    'Novel audience insights',
-                    'Performance lift from social signals',
-                    'Reduced audience overlap with competitors'
-                ],
-                timeline: '4-5 months to launch'
-            },
-            'rmn': {
-                title: 'Retail Media Network',
-                status: 'Not Started',
-                problem: 'The industry is exploring RMN and Programmatic convergence, but technical solutions for programmatic RMN delivery don\'t currently exist.',
-                solution: 'Develop RMN delivery solutions to stay ahead of industry shifts and capitalize on both PubDev and Buyer Dev revenue opportunities.',
-                benefits: [
-                    'New revenue stream from RMN',
-                    'Access to retail media inventory programmatically',
-                    'Closed-loop attribution',
-                    'Unified buying across channels'
-                ],
-                timeline: '8-12 months to launch'
-            },
-            'pub-direct': {
-                title: 'Pub-Direct Inventory Portal',
-                status: 'Not Started',
-                problem: 'Supply partners are increasingly restricting certain inventory from programmatic, including site sections or full video/CTV/audio solutions.',
-                solution: 'Partner with a Direct-Sold supply solution to unlock previously unavailable inventory for existing clients.',
-                benefits: [
-                    'Monetize previously unavailable inventory',
-                    'Access to premium restricted inventory',
-                    'Simplified buying across channels',
-                    'Maintain direct pricing control'
-                ],
-                timeline: '5-6 months to launch'
-            },
-            'wrap-report': {
-                title: 'Wrap Report',
-                status: 'Not Started',
-                problem: 'Lack of clarity on performance drivers, including targeting, quality, transparency, pricing, supply availability, and competitor behavior.',
-                solution: 'Deliver detailed campaign reports focused on key KPIs with industry benchmarks, package performance, and OpenX product offerings.',
-                benefits: [
-                    'Comprehensive campaign performance view',
-                    'Competitive benchmarking',
-                    'Actionable optimization recommendations',
-                    'Transparency across all supply sources'
-                ],
-                timeline: '3-4 months to launch'
-            },
-            'political': {
-                title: 'Political Spend Dashboard',
-                status: 'Not Started',
-                problem: 'Political campaigns need competitive intelligence to ensure spend is delivered effectively, but have an obstructed view of competitor activity.',
-                solution: 'Leverage bid response signals to provide insight into spend by geo, by channel, by state for each party to enable data-driven activation.',
-                benefits: [
-                    'Competitive intelligence by geography',
-                    'Data-driven budget allocation',
-                    'Rapid response to competitor activity',
-                    'Maximized political impact'
-                ],
-                timeline: '4-5 months to launch'
-            }
-        };
+// ── RENDER CARDS ──────────────────────────────────────────────
+const grid = document.getElementById('grid');
+solutions.forEach((sol, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-num">${String(i + 1).padStart(2, '0')}</div>
+    <div class="card-name">${sol.name}</div>
+    <div class="card-blurb">${sol.blurb.split(' ').slice(0, 22).join(' ')}…</div>
+    <div class="card-cta">Read more →</div>
+  `;
+  card.addEventListener('click', () => openModal(i));
+  grid.appendChild(card);
+});
 
-        function openModal(solutionId) {
-            const solution = solutions[solutionId];
-            const modal = document.getElementById('solutionModal');
-            const modalBody = document.getElementById('modalBody');
-            
-            modalBody.innerHTML = `
-                <div class="modal-header">
-                    <h2>${solution.title}</h2>
-                    <p style="color: #666; font-style: italic;">Status: ${solution.status}</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Problem Statement</h3>
-                    <p>${solution.problem}</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Solution</h3>
-                    <p>${solution.solution}</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Key Benefits</h3>
-                    <ul>
-                        ${solution.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Timeline</h3>
-                    <p>${solution.timeline}</p>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-        }
+// ── MODAL LOGIC ───────────────────────────────────────────────
+const overlay = document.getElementById('overlay');
 
-        function closeModal() {
-            document.getElementById('solutionModal').style.display = 'none';
-        }
+function openModal(i) {
+  const sol = solutions[i];
+  document.getElementById('modal-num').textContent = `Solution ${String(i + 1).padStart(2, '0')}`;
+  document.getElementById('modal-title').textContent = sol.name;
+  document.getElementById('modal-body').textContent = sol.blurb;
+  const practiceWrap = document.getElementById('modal-practice');
+  if (sol.inPractice) {
+    document.getElementById('modal-practice-text').textContent = sol.inPractice;
+    practiceWrap.style.display = 'block';
+  } else {
+    practiceWrap.style.display = 'none';
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('solutionModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+function closeModal(e, force) {
+  if (force || (e && e.target === overlay)) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal(null, true);
+});
+</script>
 </body>
 </html>
