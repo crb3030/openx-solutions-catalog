@@ -7,9 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ox-navy:   #0a1628;
       --ox-blue:   #0057FF;
       --ox-accent: #00c2ff;
       --ox-muted:  #6b7a99;
@@ -17,365 +15,130 @@
       --card-bg:   #111c30;
       --body-bg:   #07101f;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--body-bg); color: #e2e8f8; min-height: 100vh; overflow-x: hidden; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--body-bg);
-      color: #e2e8f8;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    /* HEADER */
+    header { position: relative; padding: 72px 60px 56px; border-bottom: 1px solid var(--ox-line); overflow: hidden; }
+    header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% -10%, rgba(0,87,255,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 110%, rgba(0,194,255,0.10) 0%, transparent 60%); pointer-events: none; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ox-accent); margin-bottom: 18px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s; }
+    header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.1; color: #fff; max-width: 680px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s; }
+    header h1 em { font-style: italic; color: var(--ox-accent); }
+    .header-sub { margin-top: 18px; font-size: 15px; font-weight: 300; color: var(--ox-muted); max-width: 520px; line-height: 1.7; opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s; }
+    .header-pills { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease forwards 0.52s; }
+    .pill { display: flex; align-items: center; gap: 7px; background: rgba(0,87,255,0.10); border: 1px solid rgba(0,87,255,0.22); border-radius: 100px; padding: 5px 14px; font-size: 12.5px; color: #a0b4e0; }
+    .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ox-accent); display: inline-block; flex-shrink: 0; }
 
-    /* ── HEADER ─────────────────────────────── */
-    header {
-      position: relative;
-      padding: 72px 60px 56px;
-      border-bottom: 1px solid var(--ox-line);
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% -10%, rgba(0,87,255,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 10% 110%, rgba(0,194,255,0.10) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .header-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ox-accent);
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.1s;
-    }
-
-    header h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(36px, 5vw, 56px);
-      line-height: 1.1;
-      color: #fff;
-      max-width: 680px;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.25s;
-    }
-
-    header h1 em {
-      font-style: italic;
-      color: var(--ox-accent);
-    }
-
-    .header-sub {
-      margin-top: 18px;
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--ox-muted);
-      max-width: 520px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.4s;
-    }
-
-    .header-pills {
-      margin-top: 32px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.52s;
-    }
-
-    .pill {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(0,87,255,0.10);
-      border: 1px solid rgba(0,87,255,0.22);
-      border-radius: 100px;
-      padding: 5px 14px;
-      font-size: 12.5px;
-      color: #a0b4e0;
-    }
-
-    .pill-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--ox-accent);
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    /* ── ABOUT STRIP ─────────────────────────── */
-    .about-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--ox-line);
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.62s;
-    }
-
-    .about-cell {
-      padding: 32px 60px;
-      border-right: 1px solid var(--ox-line);
-    }
+    /* ABOUT STRIP */
+    .about-strip { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ox-line); opacity: 0; animation: fadeUp 0.7s ease forwards 0.62s; }
+    .about-cell { padding: 32px 60px; border-right: 1px solid var(--ox-line); }
     .about-cell:last-child { border-right: none; }
+    .about-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ox-accent); margin-bottom: 9px; }
+    .about-cell p { font-size: 13.5px; line-height: 1.72; color: #7a8db0; font-weight: 300; }
 
-    .about-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ox-accent);
-      margin-bottom: 9px;
-    }
+    /* FINDER */
+    .finder-section { border-bottom: 1px solid var(--ox-line); opacity: 0; animation: fadeUp 0.7s ease forwards 0.68s; }
+    .finder-header { padding: 36px 60px 0; display: flex; align-items: center; gap: 14px; }
+    .finder-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #07101f; background: var(--ox-accent); border-radius: 100px; padding: 4px 10px; }
+    .finder-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; }
+    .finder-body { padding: 20px 60px 36px; }
+    .finder-desc { font-size: 13.5px; color: #7a8db0; font-weight: 300; line-height: 1.65; margin-bottom: 20px; max-width: 580px; }
+    .finder-input-row { display: flex; gap: 10px; align-items: flex-start; }
+    .finder-textarea { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: #e2e8f8; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.6; padding: 14px 16px; resize: none; height: 72px; transition: border-color 0.2s, height 0.2s; outline: none; }
+    .finder-textarea:focus { border-color: rgba(0,87,255,0.5); height: 100px; }
+    .finder-textarea::placeholder { color: #3d4e6a; }
+    .finder-btn { background: var(--ox-blue); border: none; border-radius: 4px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; cursor: pointer; padding: 14px 22px; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; align-self: flex-end; height: 48px; }
+    .finder-btn:hover { background: #0047d4; }
+    .finder-btn:disabled { background: #1a2d4a; color: #3d4e6a; cursor: not-allowed; }
+    .finder-thread { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .msg { display: flex; gap: 12px; align-items: flex-start; }
+    .msg-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; margin-top: 2px; }
+    .msg-avatar.user { background: rgba(0,87,255,0.25); color: var(--ox-accent); }
+    .msg-avatar.ai { background: rgba(0,194,255,0.15); color: var(--ox-accent); }
+    .msg-bubble { background: rgba(255,255,255,0.04); border: 1px solid var(--ox-line); border-radius: 4px; padding: 14px 18px; font-size: 13.5px; line-height: 1.72; color: #8090b2; font-weight: 300; flex: 1; }
+    .msg-bubble.user { color: #c0cce8; background: rgba(0,87,255,0.08); border-color: rgba(0,87,255,0.18); }
+    .msg-bubble strong { color: #e2e8f8; font-weight: 500; }
+    .solution-rec { margin-top: 14px; padding: 14px 18px; background: rgba(0,194,255,0.06); border: 1px solid rgba(0,194,255,0.18); border-radius: 4px; }
+    .solution-rec-name { font-family: 'DM Serif Display', serif; font-size: 17px; color: #fff; margin-bottom: 6px; }
+    .solution-rec-why { font-size: 13px; color: #7a8db0; line-height: 1.68; margin-bottom: 10px; }
+    .talking-points { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); }
+    .talking-points-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ox-accent); margin-bottom: 8px; }
+    .tp-item { font-size: 13px; color: #7a8db0; line-height: 1.65; padding-left: 16px; position: relative; margin-bottom: 5px; }
+    .tp-item::before { content: '→'; position: absolute; left: 0; color: var(--ox-blue); }
+    .typing-dots { display: flex; gap: 5px; align-items: center; padding: 4px 0; }
+    .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--ox-muted); animation: bounce 1.2s infinite ease-in-out; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    .reply-row { display: flex; gap: 10px; padding-left: 40px; }
+    .reply-input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: #e2e8f8; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; padding: 10px 14px; outline: none; transition: border-color 0.2s; }
+    .reply-input:focus { border-color: rgba(0,87,255,0.5); }
+    .reply-input::placeholder { color: #3d4e6a; }
+    .reply-btn { background: rgba(0,87,255,0.2); border: 1px solid rgba(0,87,255,0.35); border-radius: 4px; color: var(--ox-accent); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; padding: 10px 18px; transition: background 0.2s; }
+    .reply-btn:hover { background: rgba(0,87,255,0.35); }
+    .reset-btn { margin-top: 6px; background: none; border: none; color: var(--ox-muted); font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .reset-btn:hover { color: #a0b4e0; }
 
-    .about-cell p {
-      font-size: 13.5px;
-      line-height: 1.72;
-      color: #7a8db0;
-      font-weight: 300;
-    }
+    /* CATALOG */
+    .catalog-wrap { padding: 52px 60px 60px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ox-muted); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--ox-line); opacity: 0; animation: fadeUp 0.6s ease forwards 0.74s; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px; }
 
-    /* ── CATALOG AREA ────────────────────────── */
-    .catalog-wrap {
-      padding: 52px 60px 60px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ox-muted);
-      margin-bottom: 28px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--ox-line);
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.7s;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2px;
-    }
-
-    /* ── CARD ────────────────────────────────── */
-    .card {
-      background: var(--card-bg);
-      padding: 30px 34px 48px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.22s ease, border-color 0.22s ease;
-      border: 1px solid transparent;
-      opacity: 0;
-      animation: fadeUp 0.5s ease forwards;
-    }
-
-    .card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--ox-blue), var(--ox-accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.28s ease;
-    }
-
-    .card:hover {
-      background: #132036;
-      border-color: rgba(0,87,255,0.18);
-    }
+    /* CARD */
+    .card { background: var(--card-bg); padding: 30px 34px 48px; cursor: pointer; position: relative; overflow: hidden; transition: background 0.22s, border-color 0.22s; border: 1px solid transparent; opacity: 0; animation: fadeUp 0.5s ease forwards; }
+    .card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--ox-blue), var(--ox-accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.28s ease; }
+    .card:hover { background: #132036; border-color: rgba(0,87,255,0.18); }
     .card:hover::after { transform: scaleX(1); }
-
-    .card-num {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      color: var(--ox-blue);
-      margin-bottom: 12px;
-    }
-
-    .card-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 21px;
-      color: #fff;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .card-blurb {
-      font-size: 13px;
-      line-height: 1.72;
-      color: #6a7d9e;
-      font-weight: 300;
-    }
-
-    .card-cta {
-      position: absolute;
-      bottom: 22px; right: 28px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ox-blue);
-      opacity: 0;
-      transform: translateX(-5px);
-      transition: opacity 0.22s ease, transform 0.22s ease;
-      letter-spacing: 0.04em;
-    }
+    .card.highlighted { border-color: rgba(0,194,255,0.45) !important; background: #0f2040 !important; }
+    .card.highlighted::after { transform: scaleX(1); background: linear-gradient(90deg, var(--ox-accent), var(--ox-blue)); }
+    .card-num { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: var(--ox-blue); margin-bottom: 12px; }
+    .card-name { font-family: 'DM Serif Display', serif; font-size: 21px; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+    .card-blurb { font-size: 13px; line-height: 1.72; color: #6a7d9e; font-weight: 300; }
+    .card-cta { position: absolute; bottom: 22px; right: 28px; font-size: 12px; font-weight: 500; color: var(--ox-blue); opacity: 0; transform: translateX(-5px); transition: opacity 0.22s, transform 0.22s; }
     .card:hover .card-cta { opacity: 1; transform: translateX(0); }
 
-    /* ── MODAL ───────────────────────────────── */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 9, 18, 0.88);
-      backdrop-filter: blur(8px);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease;
-    }
+    /* MODAL */
+    .overlay { position: fixed; inset: 0; background: rgba(4,9,18,0.88); backdrop-filter: blur(8px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.22s; }
     .overlay.open { opacity: 1; pointer-events: all; }
-
-    .modal {
-      background: #0d1b2e;
-      border: 1px solid rgba(0,87,255,0.22);
-      border-radius: 3px;
-      max-width: 660px;
-      width: 100%;
-      max-height: 88vh;
-      overflow-y: auto;
-      padding: 48px 52px;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.28s ease;
-    }
+    .modal { background: #0d1b2e; border: 1px solid rgba(0,87,255,0.22); border-radius: 3px; max-width: 660px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 48px 52px; position: relative; transform: translateY(20px); transition: transform 0.28s; }
     .overlay.open .modal { transform: translateY(0); }
-
-    .modal-close {
-      position: absolute;
-      top: 18px; right: 22px;
-      background: none; border: none;
-      color: var(--ox-muted);
-      font-size: 24px;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-    }
+    .modal-close { position: absolute; top: 18px; right: 22px; background: none; border: none; color: var(--ox-muted); font-size: 24px; cursor: pointer; line-height: 1; transition: color 0.2s; }
     .modal-close:hover { color: #fff; }
+    .modal-num { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ox-accent); margin-bottom: 10px; }
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: 30px; color: #fff; line-height: 1.15; margin-bottom: 22px; }
+    .modal-rule { height: 1px; background: var(--ox-line); margin-bottom: 22px; }
+    .modal-body { font-size: 15px; line-height: 1.78; color: #8090b2; font-weight: 300; }
+    .modal-practice { margin-top: 24px; padding: 18px 22px; border-left: 2px solid var(--ox-blue); background: rgba(0,87,255,0.06); border-radius: 0 3px 3px 0; }
+    .modal-practice-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ox-accent); margin-bottom: 8px; }
+    .modal-practice p { font-size: 13.5px; line-height: 1.72; color: #7080a0; font-style: italic; font-weight: 300; }
 
-    .modal-num {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ox-accent);
-      margin-bottom: 10px;
-    }
-
-    .modal-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 30px;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 22px;
-    }
-
-    .modal-rule {
-      height: 1px;
-      background: var(--ox-line);
-      margin-bottom: 22px;
-    }
-
-    .modal-body {
-      font-size: 15px;
-      line-height: 1.78;
-      color: #8090b2;
-      font-weight: 300;
-    }
-
-    .modal-in-practice {
-      margin-top: 24px;
-      padding: 18px 22px;
-      border-left: 2px solid var(--ox-blue);
-      background: rgba(0,87,255,0.06);
-      border-radius: 0 3px 3px 0;
-    }
-
-    .modal-in-practice-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ox-accent);
-      margin-bottom: 8px;
-    }
-
-    .modal-in-practice p {
-      font-size: 13.5px;
-      line-height: 1.72;
-      color: #7080a0;
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    /* ── FOOTER ──────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--ox-line);
-      padding: 28px 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
+    /* FOOTER */
+    footer { border-top: 1px solid var(--ox-line); padding: 28px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     footer p { font-size: 12px; color: var(--ox-muted); }
     footer strong { color: #a0b4e0; font-weight: 500; }
 
-    /* ── ANIMATIONS ──────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
+    .card:nth-child(1)  { animation-delay: 0.08s; } .card:nth-child(2)  { animation-delay: 0.13s; }
+    .card:nth-child(3)  { animation-delay: 0.18s; } .card:nth-child(4)  { animation-delay: 0.23s; }
+    .card:nth-child(5)  { animation-delay: 0.28s; } .card:nth-child(6)  { animation-delay: 0.33s; }
+    .card:nth-child(7)  { animation-delay: 0.38s; } .card:nth-child(8)  { animation-delay: 0.43s; }
+    .card:nth-child(9)  { animation-delay: 0.48s; } .card:nth-child(10) { animation-delay: 0.53s; }
 
-    .card:nth-child(1)  { animation-delay: 0.08s; }
-    .card:nth-child(2)  { animation-delay: 0.14s; }
-    .card:nth-child(3)  { animation-delay: 0.20s; }
-    .card:nth-child(4)  { animation-delay: 0.26s; }
-    .card:nth-child(5)  { animation-delay: 0.32s; }
-    .card:nth-child(6)  { animation-delay: 0.38s; }
-    .card:nth-child(7)  { animation-delay: 0.44s; }
-    .card:nth-child(8)  { animation-delay: 0.50s; }
-    .card:nth-child(9)  { animation-delay: 0.56s; }
-    .card:nth-child(10) { animation-delay: 0.62s; }
-
-    /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 768px) {
-      header, .catalog-wrap, footer { padding-left: 28px; padding-right: 28px; }
+      header, .finder-header, .finder-body, .catalog-wrap, footer { padding-left: 24px; padding-right: 24px; }
       .about-strip { grid-template-columns: 1fr; }
-      .about-cell { padding: 24px 28px; border-right: none; border-bottom: 1px solid var(--ox-line); }
+      .about-cell { padding: 24px; border-right: none; border-bottom: 1px solid var(--ox-line); }
       .about-cell:last-child { border-bottom: none; }
-      .modal { padding: 32px 28px; }
+      .finder-input-row { flex-direction: column; }
+      .finder-btn { width: 100%; }
+      .reply-row { padding-left: 0; }
+      .modal { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <p class="header-eyebrow">OpenX Solutions Team — Q1 2026</p>
   <h1>What We're <em>Building</em></h1>
@@ -387,7 +150,6 @@
   </div>
 </header>
 
-<!-- ABOUT STRIP -->
 <div class="about-strip">
   <div class="about-cell">
     <div class="about-label">Who We Are</div>
@@ -399,126 +161,294 @@
   </div>
 </div>
 
-<!-- CATALOG GRID -->
+<div class="finder-section">
+  <div class="finder-header">
+    <span class="finder-badge">AI</span>
+    <div class="finder-title">Solution Finder</div>
+  </div>
+  <div class="finder-body">
+    <p class="finder-desc">Describe a client problem in your own words. The finder will ask a quick follow-up, then recommend the best-fit solution with talking points ready for your next conversation.</p>
+    <div class="finder-input-row" id="initial-row">
+      <textarea class="finder-textarea" id="finder-input" placeholder="e.g. My client has a complex regional campaign with hundreds of line items and the ops team is overwhelmed…"></textarea>
+      <button class="finder-btn" id="finder-submit" onclick="submitFinder()">Find Solution →</button>
+    </div>
+    <div class="finder-thread" id="finder-thread" style="display:none"></div>
+    <button class="reset-btn" id="reset-btn" style="display:none" onclick="resetFinder()">↩ Start over</button>
+  </div>
+</div>
+
 <div class="catalog-wrap">
   <div class="section-label">Solutions Portfolio — Examples, not exhaustive</div>
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p>Currently in active discovery across: <strong>McDonald's, Expedia, WBD, Horizon, MiQ, Keurig/Dr. Pepper, Amazon, Signet, TCCC</strong></p>
   <p>Primary Contacts: <strong>Craig Becher &amp; Monica Fleming</strong></p>
 </footer>
 
-<!-- MODAL -->
 <div class="overlay" id="overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal(null, true)">&#215;</button>
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal(null,true)">&#215;</button>
     <div class="modal-num" id="modal-num"></div>
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-rule"></div>
     <div class="modal-body" id="modal-body"></div>
-    <div class="modal-in-practice" id="modal-practice" style="display:none">
-      <div class="modal-in-practice-label">In Practice</div>
+    <div class="modal-practice" id="modal-practice" style="display:none">
+      <div class="modal-practice-label">In Practice</div>
       <p id="modal-practice-text"></p>
     </div>
   </div>
 </div>
 
 <script>
-// ── SOLUTION DATA ──────────────────────────────────────────────
-// To add, remove, or edit a solution:
-//   - Each object has: name, blurb, and optionally inPractice
-//   - Keep blurbs concise — 2-3 sentences max
-// ──────────────────────────────────────────────────────────────
 const solutions = [
   {
     name: "Audience Modeled Sitelists",
-    blurb: "Clients need cookie-free ways to reach their audience at scale and want transparency into how targeting lists are built — something third-party vendors can't provide. We pool OpenX Audience IDs from correlative segments and index them against our inventory to identify the domains that over-index for that audience, generating data-led sitelists with full methodological clarity."
+    blurb: "Clients need cookie-free ways to reach their audience at scale and want transparency into how targeting lists are built — something third-party vendors can't provide. We pool OpenX Audience IDs from correlative segments and index them against our inventory to identify the domains that over-index for that audience, generating data-led sitelists with full methodological clarity.",
+    fullDesc: "Solves cookie-free audience targeting and sitelist building. Pools OpenX Audience IDs from correlative segments, indexes them against inventory to find domains that over-index for the target audience. Best for clients who want incremental reach without cookies, want transparency into methodology, or are frustrated by black-box third-party data."
   },
   {
     name: "Key Value Sync",
     blurb: "Advertisers with regional or local campaigns often manage hundreds of DSP line items, making setup and optimization unwieldy. By passing bid stream signals as triggers for dynamic creative delivery, we collapse a campaign into a handful of line items while maintaining proper creative routing, regional spend, and full campaign control.",
+    fullDesc: "Solves complex multi-region or multi-creative campaign management. Uses bid stream key-value data to trigger dynamic creative delivery, reducing hundreds of DSP line items to 3-5. Best for advertisers with regional campaigns, franchise models, or any scenario where creative needs to vary by context but the setup is becoming unmanageable.",
     inPractice: "Expedia had proven contextual creative based on browsing locale drove performance, but scaling it across 100+ global markets required hundreds of individual deals. Key Value Sync reduced the entire structure to 3–5 line items — same strategy, same creative routing, fraction of the operational lift."
   },
   {
     name: "Trending News Curation",
-    blurb: "Advertisers are leaving significant scale on the table by avoiding news inventory because they don't trust their brand safety tools to filter it accurately. Through our partnership with Sightly, we curate trending news PMPs with granular, article-level content controls — giving buyers access to high-reach news environments with full transparency into what's included and what's filtered out."
+    blurb: "Advertisers are leaving significant scale on the table by avoiding news inventory because they don't trust their brand safety tools to filter it accurately. Through our partnership with Sightly, we curate trending news PMPs with granular, article-level content controls — giving buyers access to high-reach news environments with full transparency.",
+    fullDesc: "Solves brand safety concerns that prevent advertisers from accessing high-reach news inventory. Uses article-level content filtering via Sightly partnership to curate brand-safe trending news PMPs. Best for clients who have blanket-blocked news but are leaving scale on the table, or who want to reach engaged news audiences safely."
   },
   {
     name: "Inventory Quality Scoring",
-    blurb: "Buyers increasingly treat inventory quality as a core performance metric, but most SSPs lack a rigorous, data-driven way to measure and communicate it. We score supply across multiple signals — viewability, IVT, engagement, brand safety — and share that data with both publishers to drive improvements and buyers to enable quality-based curation and optimization."
+    blurb: "Buyers increasingly treat inventory quality as a core performance metric, but most SSPs lack a rigorous, data-driven way to measure and communicate it. We score supply across multiple signals — viewability, IVT, engagement, brand safety — and share that data with both publishers and buyers.",
+    fullDesc: "Solves inventory transparency and quality concerns. Scores OpenX supply across viewability, IVT, engagement, and brand safety signals. Best for clients who prioritize inventory quality, are concerned about IVT, or want data-driven supply curation and transparency."
   },
   {
     name: "Algo Sync",
-    blurb: "We build deals without visibility into what signals DSP algorithms — or the custom third-party algos like Scibids and Chalice that replace them — actually prioritize. By understanding those value signals, we can structure our deals around what their systems weight most heavily, increasing bid rate, win rate, and overall deal performance for clients using those platforms."
+    blurb: "We build deals without visibility into what signals DSP algorithms — or custom third-party algos like Scibids and Chalice — actually prioritize. By understanding those value signals, we structure our deals around what their systems weight most heavily, increasing bid rate, win rate, and overall deal performance.",
+    fullDesc: "Solves low bid rate and win rate on deals when clients use custom algorithmic buying platforms like Scibids or Chalice. Partners with these algo providers to understand their value signals and restructure deals accordingly. Best for clients using third-party algorithmic bidding who are experiencing poor deal performance or low bid rates."
   },
   {
     name: "DealStack",
-    blurb: "Most deals are built as a single flat construct — one deal, one tactic. But OpenX can reach any audience in multiple ways: sitelists, data segments, lookalike models, first-party data, contextual segments, and more. DealStack packages all relevant outputs as child deal IDs under a single parent deal, giving buyers one simple setup while maximizing every biddable opportunity available against their audience."
+    blurb: "Most deals are built as a single flat construct — one deal, one tactic. But OpenX can reach any audience in multiple ways: sitelists, data segments, lookalike models, first-party data, contextual segments, and more. DealStack packages all relevant outputs as child deal IDs under a single parent deal, maximizing every biddable opportunity.",
+    fullDesc: "Solves underperforming deals caused by single-tactic construction. Packages multiple targeting outputs as child deal IDs under one parent deal ID. Best for clients who want to maximize audience reach, improve bid rate and win rate, or simplify deal setup while expanding targeting coverage."
   },
   {
     name: "BrandStack",
-    blurb: "Multi-brand advertisers like Signet run separate campaigns for each brand — Kay, Zales, Jared — creating redundant setup, siloed reporting, and audience cannibalization when the same user gets hit by multiple brands at once. BrandStack consolidates the portfolio into a single campaign structure with decisioning logic that routes each impression to the right brand, prevents cross-brand overexposure, and delivers unified reporting with brand-level breakouts."
+    blurb: "Multi-brand advertisers like Signet run separate campaigns for each brand — Kay, Zales, Jared — creating redundant setup, siloed reporting, and audience cannibalization when the same user gets hit by multiple brands at once. BrandStack consolidates the portfolio into a single campaign with smart decisioning logic.",
+    fullDesc: "Solves operational complexity and audience cannibalization for multi-brand advertisers. Consolidates multiple brand campaigns into one structure with decisioning logic that routes impressions to the right brand and prevents cross-brand frequency overlap. Best for advertisers managing multiple brands under one umbrella — retail groups, franchise networks, jewelers, QSR chains."
   },
   {
     name: "OmniSignal Intelligence",
-    blurb: "Omnichannel retailers measure success across Online ROAS and Omni ROAS, but their funnel — CTV exposure to store visit to conversion — is measured in disconnected silos. OpenX can stitch that journey together using our supply footprint, foot traffic partners, and conversion signals to connect exposure to visit to purchase. The result is a truer picture of omni influence and a stronger case for OpenX's contribution to in-store outcomes, not just digital ones."
+    blurb: "Omnichannel retailers measure success across Online ROAS and Omni ROAS, but their funnel — CTV exposure to store visit to conversion — is measured in disconnected silos. OpenX stitches that journey together to connect exposure to visit to purchase, giving a truer picture of omni influence.",
+    fullDesc: "Solves disconnected omnichannel measurement for retail advertisers. Connects CTV exposure, foot traffic signals, and conversion data to build a unified consumer journey view and improve Omni ROAS attribution. Best for retail or CPG clients who care about in-store sales lift, or are frustrated that digital media doesn't get credit for offline conversions."
   },
   {
     name: "FlowFilter",
-    blurb: "Most campaign optimization is reactive — reports come in, teams review them, and changes get made weeks later. FlowFilter removes that lag by automatically ingesting performance data from any measurement partner (Attain, IQVIA, Nielsen, Foursquare, client CRM), analyzing it against campaign KPIs, and updating deal targeting and traffic shaping in real time. The campaign learns and improves continuously without waiting on a manual optimization cycle."
+    blurb: "Most campaign optimization is reactive — reports come in, teams review them, and changes get made weeks later. FlowFilter removes that lag by automatically ingesting performance data from any measurement partner, analyzing it against campaign KPIs, and updating deal targeting and traffic shaping in real time.",
+    fullDesc: "Solves slow, manual campaign optimization cycles. Automatically ingests data from measurement partners (Attain, IQVIA, Nielsen, Foursquare, client CRM), analyzes against KPIs, and updates deal targeting in real time. Best for clients with strong measurement partnerships in verticals like pharma, QSR, or retail where outcome data is available and optimization lag is costing performance."
   },
   {
     name: "SeedAgent",
-    blurb: "A prompt-based audience generation tool that uses natural language to build seed audiences from contextual, transactional, demographic, and geographic data — all combinable in a single output. Seeds can be uploaded via UI and extended through lookalike modeling for activation. Best suited for manual POC testing today; productionized usage requires additional development post a 4–8 week validation period."
+    blurb: "A prompt-based audience generation tool that uses natural language to build seed audiences from contextual, transactional, demographic, and geographic data — all combinable in a single output. Seeds can be extended through lookalike modeling for activation.",
+    fullDesc: "Solves the complexity of audience construction for targeting. Uses natural language prompts to build seed audiences from contextual, transactional, demographic, and geographic data, extendable via lookalike modeling. Best for clients or teams who want to quickly build and test custom audience segments without complex data science workflows."
   }
 ];
 
-// ── RENDER CARDS ──────────────────────────────────────────────
+// Render cards
 const grid = document.getElementById('grid');
 solutions.forEach((sol, i) => {
   const card = document.createElement('div');
   card.className = 'card';
-  card.innerHTML = `
-    <div class="card-num">${String(i + 1).padStart(2, '0')}</div>
-    <div class="card-name">${sol.name}</div>
-    <div class="card-blurb">${sol.blurb.split(' ').slice(0, 22).join(' ')}…</div>
-    <div class="card-cta">Read more →</div>
-  `;
-  card.addEventListener('click', () => openModal(i));
+  card.id = 'card-' + i;
+  const preview = sol.blurb.split(' ').slice(0, 20).join(' ') + '…';
+  card.innerHTML =
+    '<div class="card-num">' + String(i+1).padStart(2,'0') + '</div>' +
+    '<div class="card-name">' + sol.name + '</div>' +
+    '<div class="card-blurb">' + preview + '</div>' +
+    '<div class="card-cta">Read more →</div>';
+  card.addEventListener('click', function(){ openModal(i); });
   grid.appendChild(card);
 });
 
-// ── MODAL LOGIC ───────────────────────────────────────────────
+// Modal
 const overlay = document.getElementById('overlay');
-
 function openModal(i) {
-  const sol = solutions[i];
-  document.getElementById('modal-num').textContent = `Solution ${String(i + 1).padStart(2, '0')}`;
+  var sol = solutions[i];
+  document.getElementById('modal-num').textContent = 'Solution ' + String(i+1).padStart(2,'0');
   document.getElementById('modal-title').textContent = sol.name;
   document.getElementById('modal-body').textContent = sol.blurb;
-  const practiceWrap = document.getElementById('modal-practice');
+  var pw = document.getElementById('modal-practice');
   if (sol.inPractice) {
     document.getElementById('modal-practice-text').textContent = sol.inPractice;
-    practiceWrap.style.display = 'block';
-  } else {
-    practiceWrap.style.display = 'none';
-  }
+    pw.style.display = 'block';
+  } else { pw.style.display = 'none'; }
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal(e, force) {
   if (force || (e && e.target === overlay)) {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 }
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(null, true); });
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal(null, true);
+// AI Finder
+var conversationHistory = [];
+
+var SYSTEM_PROMPT = 'You are an expert sales assistant for OpenX, a leading supply-side platform (SSP) in programmatic advertising. Your job is to help OpenX sales reps identify the best solution from the portfolio based on a client problem.\n\nAvailable solutions:\n\n' +
+  solutions.map(function(s,i){ return (i+1) + '. ' + s.name + ': ' + s.fullDesc; }).join('\n\n') +
+  '\n\nBehavior rules:\n- First, ask ONE short clarifying question to better understand the situation. Keep it conversational.\n- After they answer (or if their description is already very detailed), give your recommendation.\n- Recommend 1-2 solutions max.\n- For each, explain in 2-3 sentences WHY it fits their specific situation.\n- Provide 3 sharp, client-ready talking points. Non-technical, punchy, peer-to-peer tone.\n- Always respond with valid JSON only — no text outside the JSON.\n\nFor a clarifying question use exactly:\n{"type":"clarification","question":"Your question here."}\n\nFor a recommendation use exactly:\n{"type":"recommendation","recommendations":[{"name":"Solution Name","why":"Why it fits in 2-3 sentences.","talkingPoints":["Point one","Point two","Point three"]}]}';
+
+async function callClaude(messages) {
+  var response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: messages
+    })
+  });
+  var data = await response.json();
+  return data.content[0].text;
+}
+
+function addUserMsg(text) {
+  var thread = document.getElementById('finder-thread');
+  var el = document.createElement('div');
+  el.className = 'msg';
+  el.innerHTML = '<div class="msg-avatar user">You</div><div class="msg-bubble user">' + text + '</div>';
+  thread.appendChild(el);
+}
+
+function addTyping() {
+  var thread = document.getElementById('finder-thread');
+  var el = document.createElement('div');
+  el.className = 'msg'; el.id = 'typing-indicator';
+  el.innerHTML = '<div class="msg-avatar ai">OX</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  thread.appendChild(el);
+  el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function removeTyping() {
+  var el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+function addAIMsg(parsed) {
+  var thread = document.getElementById('finder-thread');
+  var el = document.createElement('div');
+  el.className = 'msg';
+
+  if (parsed.type === 'clarification') {
+    el.innerHTML = '<div class="msg-avatar ai">OX</div><div class="msg-bubble">' + parsed.question + '</div>';
+    thread.appendChild(el);
+    var replyRow = document.createElement('div');
+    replyRow.className = 'reply-row'; replyRow.id = 'reply-row';
+    replyRow.innerHTML = '<input class="reply-input" id="reply-input" placeholder="Your answer…" /><button class="reply-btn" onclick="submitReply()">Send →</button>';
+    thread.appendChild(replyRow);
+    var ri = document.getElementById('reply-input');
+    ri.addEventListener('keydown', function(e){ if (e.key === 'Enter') submitReply(); });
+    setTimeout(function(){ ri.focus(); }, 100);
+
+  } else if (parsed.type === 'recommendation') {
+    var html = '<div class="msg-avatar ai">OX</div><div class="msg-bubble">';
+    html += '<strong>' + (parsed.recommendations.length > 1 ? 'Here are ' + parsed.recommendations.length + ' solutions that fit:' : 'Best fit for this situation:') + '</strong>';
+    parsed.recommendations.forEach(function(rec) {
+      var idx = solutions.findIndex(function(s){ return s.name.toLowerCase() === rec.name.toLowerCase(); });
+      if (idx >= 0) {
+        document.querySelectorAll('.card').forEach(function(c){ c.classList.remove('highlighted'); });
+        var matchCard = document.getElementById('card-' + idx);
+        if (matchCard) matchCard.classList.add('highlighted');
+      }
+      html += '<div class="solution-rec">' +
+        '<div class="solution-rec-name">' + rec.name + '</div>' +
+        '<div class="solution-rec-why">' + rec.why + '</div>' +
+        '<div class="talking-points"><div class="talking-points-label">Talking Points</div>' +
+        rec.talkingPoints.map(function(tp){ return '<div class="tp-item">' + tp + '</div>'; }).join('') +
+        '</div></div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+    thread.appendChild(el);
+    setTimeout(function(){
+      var hint = document.createElement('div');
+      hint.className = 'msg';
+      hint.innerHTML = '<div class="msg-avatar ai">OX</div><div class="msg-bubble" style="font-size:12.5px;color:#4a5e80;">The matching solution' + (parsed.recommendations.length > 1 ? 's are' : ' is') + ' highlighted in the catalog below ↓</div>';
+      thread.appendChild(hint);
+    }, 400);
+  }
+  thread.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+async function submitFinder() {
+  var input = document.getElementById('finder-input');
+  var text = input.value.trim();
+  if (!text) return;
+  document.getElementById('finder-thread').style.display = 'flex';
+  document.getElementById('initial-row').style.display = 'none';
+  document.getElementById('reset-btn').style.display = 'inline-block';
+  document.getElementById('finder-submit').disabled = true;
+  addUserMsg(text);
+  conversationHistory.push({ role: 'user', content: text });
+  addTyping();
+  try {
+    var raw = await callClaude(conversationHistory);
+    removeTyping();
+    var parsed = JSON.parse(raw);
+    conversationHistory.push({ role: 'assistant', content: raw });
+    addAIMsg(parsed);
+  } catch(err) {
+    removeTyping();
+    var thread = document.getElementById('finder-thread');
+    var errEl = document.createElement('div');
+    errEl.className = 'msg';
+    errEl.innerHTML = '<div class="msg-avatar ai">OX</div><div class="msg-bubble">Something went wrong — try refreshing and giving it another shot.</div>';
+    thread.appendChild(errEl);
+  }
+}
+
+async function submitReply() {
+  var input = document.getElementById('reply-input');
+  var text = input.value.trim();
+  if (!text) return;
+  document.getElementById('reply-row').remove();
+  addUserMsg(text);
+  conversationHistory.push({ role: 'user', content: text });
+  addTyping();
+  try {
+    var raw = await callClaude(conversationHistory);
+    removeTyping();
+    var parsed = JSON.parse(raw);
+    conversationHistory.push({ role: 'assistant', content: raw });
+    addAIMsg(parsed);
+  } catch(err) {
+    removeTyping();
+    var thread = document.getElementById('finder-thread');
+    var errEl = document.createElement('div');
+    errEl.className = 'msg';
+    errEl.innerHTML = '<div class="msg-avatar ai">OX</div><div class="msg-bubble">Something went wrong — try refreshing and giving it another shot.</div>';
+    thread.appendChild(errEl);
+  }
+}
+
+function resetFinder() {
+  conversationHistory = [];
+  document.getElementById('finder-thread').style.display = 'none';
+  document.getElementById('finder-thread').innerHTML = '';
+  document.getElementById('initial-row').style.display = 'flex';
+  document.getElementById('reset-btn').style.display = 'none';
+  document.getElementById('finder-input').value = '';
+  document.getElementById('finder-submit').disabled = false;
+  document.querySelectorAll('.card').forEach(function(c){ c.classList.remove('highlighted'); });
+}
+
+document.getElementById('finder-input').addEventListener('keydown', function(e){
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitFinder(); }
 });
 </script>
 </body>
