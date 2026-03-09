@@ -206,53 +206,155 @@ const solutions = [
   {
     name: "Audience Modeled Sitelists",
     blurb: "Clients need cookie-free ways to reach their audience at scale and want transparency into how targeting lists are built — something third-party vendors can't provide. We pool OpenX Audience IDs from correlative segments and index them against our inventory to identify the domains that over-index for that audience, generating data-led sitelists with full methodological clarity.",
-    fullDesc: "Solves cookie-free audience targeting and sitelist building. Pools OpenX Audience IDs from correlative segments, indexes them against inventory to find domains that over-index for the target audience. Best for clients who want incremental reach without cookies, want transparency into methodology, or are frustrated by black-box third-party data."
+    fullDesc: `PROBLEM: Clients want incremental audience reach and cookie-free targeting, but OpenX has only been able to offer third-party solutions with no transparency into methodology. Buyers want data-led sitelists they can actually explain to clients.
+
+HOW IT WORKS: Pools OpenX Audience IDs (OAIDs) from correlative segments, overlays them against OpenX inventory to index which domains over-index for the target audience — enabling curated inventory at scale without third-party cookie dependency.
+
+IDEAL CLIENT SIGNALS: Client is asking about cookie deprecation alternatives. They want transparency into how targeting lists are built. They're frustrated with black-box third-party data vendors. They need incremental reach beyond their existing targeting. Minimum $50K/month spend commitment. Publisher needs 50M+ monthly impressions in target category.
+
+WHAT THEY GET: 20-35% CPM lift on modeled inventory. Cookie-free audience monetization. Data-driven sitelist optimization based on actual audience signals. Reduced reliance on walled garden targeting.
+
+NOT A GOOD FIT IF: Client has no first-party data or OAID integration. Client is purely focused on price/efficiency rather than audience quality or transparency. Client has very small spend (<$50K/month).
+
+SUCCESS METRICS: 20-35% CPM lift, 3+ buyers per sitelist, >60% fill rate on modeled deals. Timeline: 6-8 weeks to launch.`
   },
   {
     name: "Key Value Sync",
     blurb: "Advertisers with regional or local campaigns often manage hundreds of DSP line items, making setup and optimization unwieldy. By passing bid stream signals as triggers for dynamic creative delivery, we collapse a campaign into a handful of line items while maintaining proper creative routing, regional spend, and full campaign control.",
-    fullDesc: "Solves complex multi-region or multi-creative campaign management. Uses bid stream key-value data to trigger dynamic creative delivery, reducing hundreds of DSP line items to 3-5. Best for advertisers with regional campaigns, franchise models, or any scenario where creative needs to vary by context but the setup is becoming unmanageable.",
+    fullDesc: `PROBLEM: Advertisers with regional or local targeting — especially those with hundreds or thousands of DSP line items — face massive operational burden. Complex setups lead to trafficking errors, slow go-live timelines, and deterred spend.
+
+HOW IT WORKS: Uses bid stream key-value pairs as triggers for dynamic creative delivery. Collapses hundreds of line items down to 3-5 while preserving creative routing by region, spend controls, and campaign logic. No need to pre-build individual line items per geo/creative combination.
+
+IDEAL CLIENT SIGNALS: Client has regional, local, or franchise campaigns. They're managing 50+ or 100+ DSP line items. Ops team is overwhelmed with trafficking complexity. They use dynamic creative or contextual creative variations. Client mentions Jivox or similar dynamic creative platforms. Go-live timelines are slow. Status: GTM Ready — can be sold and delivered now.
+
+WHAT THEY GET: 95%+ reduction in line item complexity. Campaign setup in days vs. weeks. Real-time creative optimization by key-value signal. Reduced trafficking errors.
+
+NOT A GOOD FIT IF: Client runs simple national campaigns with one creative. No dynamic creative capability. Very small campaign footprint.
+
+IN PRACTICE: Expedia reduced 100+ global market line item structure to 3-5 line items — same strategy, same creative routing, fraction of the operational lift.
+
+SUCCESS METRICS: 95%+ line item reduction, faster go-live, fill rate improvement. Timeline: 3-4 weeks.`,
     inPractice: "Expedia had proven contextual creative based on browsing locale drove performance, but scaling it across 100+ global markets required hundreds of individual deals. Key Value Sync reduced the entire structure to 3–5 line items — same strategy, same creative routing, fraction of the operational lift."
   },
   {
     name: "Trending News Curation",
     blurb: "Advertisers are leaving significant scale on the table by avoiding news inventory because they don't trust their brand safety tools to filter it accurately. Through our partnership with Sightly, we curate trending news PMPs with granular, article-level content controls — giving buyers access to high-reach news environments with full transparency.",
-    fullDesc: "Solves brand safety concerns that prevent advertisers from accessing high-reach news inventory. Uses article-level content filtering via Sightly partnership to curate brand-safe trending news PMPs. Best for clients who have blanket-blocked news but are leaving scale on the table, or who want to reach engaged news audiences safely."
+    fullDesc: `PROBLEM: Clients are omitting news targeting from their buys entirely, leaving significant scale behind. They lack confidence in brand safety vendors to accurately filter negative news content — especially politics and government categories.
+
+HOW IT WORKS: PMP curation of trending news content via Sightly partnership (through OAA — OpenX Audience Activation). Article-level content controls filter out non-suitable inventory with full transparency into what's in and what's out. Status: Completed — available now.
+
+IDEAL CLIENT SIGNALS: Client has news inventory blocked in their brand safety settings. They're complaining about scale or reach shortfalls. They want to reach engaged, premium news audiences. They're in CPG, retail, or any brand-safety-sensitive vertical. They mention brand safety concerns around news/politics.
+
+WHAT THEY GET: Access to 30-50% more monetizable news inventory. Article-level (not just domain-level) brand safety controls. Premium CPMs. Transparency reports on what's filtered.
+
+NOT A GOOD FIT IF: Client has explicit brand adjacency concerns that go beyond standard filters. Very niche content requirements that Sightly can't accommodate. Client is in an industry with severe news avoidance requirements (e.g., some pharma categories).
+
+SUCCESS METRICS: Near-zero brand safety incidents on curated deals, 30-50% increase in news inventory monetization rate. Timeline: 3-4 weeks.`
   },
   {
     name: "Inventory Quality Scoring",
     blurb: "Buyers increasingly treat inventory quality as a core performance metric, but most SSPs lack a rigorous, data-driven way to measure and communicate it. We score supply across multiple signals — viewability, IVT, engagement, brand safety — and share that data with both publishers and buyers.",
-    fullDesc: "Solves inventory transparency and quality concerns. Scores OpenX supply across viewability, IVT, engagement, and brand safety signals. Best for clients who prioritize inventory quality, are concerned about IVT, or want data-driven supply curation and transparency."
+    fullDesc: `PROBLEM: Inventory quality is now a key buy-side performance metric alongside price and engagement. Buyers demand empirical scoring and transparency — OpenX previously lacked a formal solution, leaving competitive differentiation and revenue untapped.
+
+HOW IT WORKS: Collaborates with supply partners to score inventory across IVT, viewability, engagement, and brand safety signals. Low-scoring properties flagged for improvement. Buyers get independent benchmarks for KPI optimization. Status: Completed — available now.
+
+IDEAL CLIENT SIGNALS: Client is asking about inventory quality or IVT concerns. They mention viewability benchmarks. They're comparing OpenX quality to other SSPs. They're using quality as a deal curation criterion. Agency or trading desk is applying quality filters in buying strategy.
+
+WHAT THEY GET: Independent quality benchmarks not based on publisher self-reporting. Data-driven curation against quality-scored inventory. Reduced waste on low-quality inventory. 10-20% CPM premium on high-quality scored inventory.
+
+NOT A GOOD FIT IF: Client is purely price-focused and not quality-driven. Client already has robust third-party quality measurement they're satisfied with.
+
+SUCCESS METRICS: 10-20% CPM premium on high-quality inventory, IVT rate reduction, >40% buyer adoption of quality scores. Timeline: 4-5 weeks.`
   },
   {
     name: "Algo Sync",
     blurb: "We build deals without visibility into what signals DSP algorithms — or custom third-party algos like Scibids and Chalice — actually prioritize. By understanding those value signals, we structure our deals around what their systems weight most heavily, increasing bid rate, win rate, and overall deal performance.",
-    fullDesc: "Solves low bid rate and win rate on deals when clients use custom algorithmic buying platforms like Scibids or Chalice. Partners with these algo providers to understand their value signals and restructure deals accordingly. Best for clients using third-party algorithmic bidding who are experiencing poor deal performance or low bid rates."
+    fullDesc: `PROBLEM: OpenX builds deals without visibility into what DSP algorithms — or third-party custom algos like Scibids and Chalice — actually prioritize. The result is partially-blind deal construction that underperforms because it doesn't align with the signals the buying system values most.
+
+HOW IT WORKS: Partners with Scibids, Chalice, and other algo providers to understand their value signals. Structures OpenX deals around what those systems weight most heavily — increasing bid rate, win rate, and deal quality for clients using these platforms.
+
+IDEAL CLIENT SIGNALS: Client or agency mentions Scibids, Chalice, or other custom algorithmic bidding platforms. They're experiencing low bid rates or win rates on deals. Deal performance is inconsistent or declining. They've replaced the native DSP algorithm with a custom one. Client is a sophisticated trading desk or agency with algorithmic buying capabilities.
+
+WHAT THEY GET: 15-30% bid rate improvement. 10-20% win rate improvement. Better alignment between deal packaging and DSP optimization logic. Reduced wasted bid requests.
+
+NOT A GOOD FIT IF: Client is using standard DSP algorithms without customization. They don't use Scibids, Chalice, or comparable platforms. Deal performance issues are driven by other factors (creative, targeting mismatch, etc.).
+
+SUCCESS METRICS: 15-30% bid rate lift, 10-20% win rate lift, 5+ clients in Year 1. Timeline: 4-5 months.`
   },
   {
     name: "DealStack",
     blurb: "Most deals are built as a single flat construct — one deal, one tactic. But OpenX can reach any audience in multiple ways: sitelists, data segments, lookalike models, first-party data, contextual segments, and more. DealStack packages all relevant outputs as child deal IDs under a single parent deal, maximizing every biddable opportunity.",
-    fullDesc: "Solves underperforming deals caused by single-tactic construction. Packages multiple targeting outputs as child deal IDs under one parent deal ID. Best for clients who want to maximize audience reach, improve bid rate and win rate, or simplify deal setup while expanding targeting coverage."
+    fullDesc: `PROBLEM: A deal is typically built as a single, flat construct — one deal ID, one tactic. This leaves significant biddable opportunity on the table because OpenX can reach the same audience through multiple complementary pathways that are never packaged together.
+
+HOW IT WORKS: Uses a defined audience or inventory target as a single input to generate multiple targeting outputs — sitelists, data segments, lookalike models, audience-modeled sitelists, first-party data segments, contextual segments, multi-provider audiences, ID-based audiences, and more. All outputs become child deal IDs under one parent deal ID. One buyer setup, maximum biddable coverage.
+
+IDEAL CLIENT SIGNALS: Client is experiencing low bid rates or win rates on deals. Deal scale or fill rate is underperforming. Buyer is complaining about limited inventory in deal. Sales team built a single-tactic deal and it's not scaling. Client wants to maximize reach against a specific audience. Any situation where you'd normally build multiple separate deals for the same audience.
+
+WHAT THEY GET: 30-50% more biddable opportunities vs. a single-output deal. Simplified buyer setup (one deal ID in DSP). 10-20% bid/win rate improvement. Granular reporting by output type.
+
+NOT A GOOD FIT IF: Client has very specific, narrow targeting needs where breadth would be counterproductive. Client's DSP can't handle parent/child deal structures.
+
+SUCCESS METRICS: 30-50% biddable opportunity lift, 10-20% bid/win rate improvement. Timeline: 3-4 months.`
   },
   {
     name: "BrandStack",
     blurb: "Multi-brand advertisers like Signet run separate campaigns for each brand — Kay, Zales, Jared — creating redundant setup, siloed reporting, and audience cannibalization when the same user gets hit by multiple brands at once. BrandStack consolidates the portfolio into a single campaign with smart decisioning logic.",
-    fullDesc: "Solves operational complexity and audience cannibalization for multi-brand advertisers. Consolidates multiple brand campaigns into one structure with decisioning logic that routes impressions to the right brand and prevents cross-brand frequency overlap. Best for advertisers managing multiple brands under one umbrella — retail groups, franchise networks, jewelers, QSR chains."
+    fullDesc: `PROBLEM: Large multi-brand advertisers must run separate campaigns per brand, creating compounding operational overhead and audience cannibalization — the same user gets targeted simultaneously by multiple sister brands, inflating frequency, wasting budget, and degrading experience. There's no cross-brand decisioning layer.
+
+HOW IT WORKS: Consolidates multi-brand portfolio into a single campaign with supply-side decisioning. Brand-routing logic evaluates each bid request against contextual fit, audience match, geo, frequency history, and brand safety. Cross-brand frequency caps prevent cannibalization. Creative fulfillment resolved at decision time. Unified reporting with brand-level breakouts.
+
+IDEAL CLIENT SIGNALS: Client manages multiple brands under one advertiser umbrella (Signet/Kay/Zales/Jared, retail groups, QSR chains, auto OEMs, financial services portfolios). They're running separate campaigns for each brand. Ops team is frustrated by redundant setup. Reporting is siloed across brands. They suspect audience cannibalization. Client is in retail, QSR, auto, financial services, or franchise.
+
+WHAT THEY GET: 60-70% reduction in campaign setup time. >80% reduction in cross-brand cannibalization. >95% brand routing accuracy. 10-20% effective CPM improvement across portfolio. Unified reporting dashboard.
+
+NOT A GOOD FIT IF: Single-brand advertiser. Client doesn't have audience overlap concerns between brands. DSP doesn't support the unified deal/audience structure required.
+
+SUCCESS METRICS: >80% cannibalization reduction, 60-70% setup time reduction, >95% routing accuracy. Timeline: 4-5 months.`
   },
   {
     name: "OmniSignal Intelligence",
     blurb: "Omnichannel retailers measure success across Online ROAS and Omni ROAS, but their funnel — CTV exposure to store visit to conversion — is measured in disconnected silos. OpenX stitches that journey together to connect exposure to visit to purchase, giving a truer picture of omni influence.",
-    fullDesc: "Solves disconnected omnichannel measurement for retail advertisers. Connects CTV exposure, foot traffic signals, and conversion data to build a unified consumer journey view and improve Omni ROAS attribution. Best for retail or CPG clients who care about in-store sales lift, or are frustrated that digital media doesn't get credit for offline conversions."
+    fullDesc: `PROBLEM: Retail and omnichannel brand advertisers measure Online ROAS and Omni ROAS, but their full funnel — CTV exposure → site/store visit → purchase — is measured in disconnected silos. OpenX's contribution to in-store conversions is invisible and undervalued.
+
+HOW IT WORKS: Three-stage attribution: (1) Exposure mapping across CTV/display/video; (2) Match exposed users to site visits and in-store foot traffic via location partners (Foursquare, PlaceIQ); (3) Tie visit data to purchase signals via retailer POS or online transaction data. Connects impression logs, foot traffic API, and conversion signals through identity resolution layer (LiveRamp).
+
+IDEAL CLIENT SIGNALS: Client is a retailer or omnichannel CPG brand. They mention Omni ROAS or in-store sales lift as a KPI. They feel digital media isn't getting credit for offline conversions. They have a foot traffic measurement partner (Foursquare, PlaceIQ). They're running CTV alongside display/programmatic. They have access to POS or online conversion data. They measure both Online ROAS and Omni ROAS.
+
+WHAT THEY GET: 15-25% exposure-to-visit rate lift. 20-40% Omni ROAS improvement when in-store attribution is included. Cross-channel attribution without full MTA rebuild. Ability to optimize CTV and display against real downstream outcomes.
+
+NOT A GOOD FIT IF: Pure e-commerce client with no physical retail presence. Client has no measurement partner or conversion data available. Client does not care about in-store attribution or offline outcomes.
+
+SUCCESS METRICS: 15-25% exposure-to-visit lift, 20-40% Omni ROAS improvement. Timeline: 5-6 months.`
   },
   {
     name: "FlowFilter",
     blurb: "Most campaign optimization is reactive — reports come in, teams review them, and changes get made weeks later. FlowFilter removes that lag by automatically ingesting performance data from any measurement partner, analyzing it against campaign KPIs, and updating deal targeting and traffic shaping in real time.",
-    fullDesc: "Solves slow, manual campaign optimization cycles. Automatically ingests data from measurement partners (Attain, IQVIA, Nielsen, Foursquare, client CRM), analyzes against KPIs, and updates deal targeting in real time. Best for clients with strong measurement partnerships in verticals like pharma, QSR, or retail where outcome data is available and optimization lag is costing performance."
+    fullDesc: `PROBLEM: Traditional campaign analytics are retrospective — insights generate 2-4 weeks after the fact and require manual action. Measurement data lives separately from activation platforms. Not all teams have resources to continuously analyze and act on performance signals.
+
+HOW IT WORKS: Creates a direct pipeline from measurement to activation. Ingests performance data from any measurement partner (Attain, IQVIA, Nielsen, Foursquare, client CRM) via API or file-based feed. Scores traffic sources against client KPIs. ML models identify high vs. low performing patterns and build predictive models. Automatically updates deal targeting parameters in real time without manual trafficking. Continuous Measure → Analyze → Optimize → Measure flywheel.
+
+IDEAL CLIENT SIGNALS: Client has an active measurement partnership (Attain, IQVIA, Nielsen, Foursquare, or CRM data). They're frustrated with 2-4 week optimization lag. They're in pharma, QSR, retail, or healthcare where outcome data is available. They're under-resourced for manual optimization cycles. They have defined, measurable campaign KPIs beyond click/CTR. They want performance to compound over the campaign flight.
+
+WHAT THEY GET: Real-time to 24-hour optimization cycles vs. 2-4 week lag. 15-30% campaign performance lift vs. control. Reduced manual trafficking and analysis burden. Full transparency into what's being optimized and why.
+
+NOT A GOOD FIT IF: Client has no measurement partner or outcome data to feed the loop. Client has only vanity KPIs (impressions, reach) with no conversion data. Vertical with no available third-party measurement partnership.
+
+SUCCESS METRICS: 15-30% KPI improvement vs. control, real-time optimization cycle. Timeline: 6 months to full launch.`
   },
   {
     name: "SeedAgent",
     blurb: "A prompt-based audience generation tool that uses natural language to build seed audiences from contextual, transactional, demographic, and geographic data — all combinable in a single output. Seeds can be extended through lookalike modeling for activation.",
-    fullDesc: "Solves the complexity of audience construction for targeting. Uses natural language prompts to build seed audiences from contextual, transactional, demographic, and geographic data, extendable via lookalike modeling. Best for clients or teams who want to quickly build and test custom audience segments without complex data science workflows."
+    fullDesc: `PROBLEM: Building custom audience segments typically requires complex data science workflows, multiple vendor relationships, and significant technical overhead — putting sophisticated audience construction out of reach for most sales and strategy conversations.
+
+HOW IT WORKS: Prompt-based audience generation using natural language. Builds seed audiences by combining contextual, transactional, demographic, and geographic signals in a single output. Seeds uploadable via UI and extendable through lookalike modeling for activation at scale. Currently best suited for manual POC testing; productionized use requires 4-8 week validation period post-POC.
+
+IDEAL CLIENT SIGNALS: Client wants a custom audience that doesn't fit standard third-party segments. They're asking about audience construction transparency. They want to test a niche or highly specific audience definition. Team wants to quickly prototype an audience strategy without a data science engagement. Client is open to a POC or test-and-learn approach. Works well as an entry point for any client conversation where precise audience definition is a differentiator.
+
+WHAT THEY GET: Natural language audience building without complex workflows. Combinable signals (contextual + transactional + demographic + geographic) in one output. Extendable via lookalike modeling. Full transparency into how the audience was constructed.
+
+NOT A GOOD FIT IF: Client needs a fully productionized, at-scale audience solution immediately (currently POC stage). Client needs guaranteed scale from day one. Client is not open to a validation/test period.
+
+NOTE: This is an early-stage tool. Be transparent that current usage is POC/manual. Productionized deployment requires 4-8 week validation post-POC confirmation.`
   }
 ];
 
@@ -298,9 +400,9 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeM
 // AI Finder
 var conversationHistory = [];
 
-var SYSTEM_PROMPT = 'You are an expert sales assistant for OpenX, a leading supply-side platform (SSP) in programmatic advertising. Your job is to help OpenX sales reps identify the best solution from the portfolio based on a client problem.\n\nAvailable solutions:\n\n' +
-  solutions.map(function(s,i){ return (i+1) + '. ' + s.name + ': ' + s.fullDesc; }).join('\n\n') +
-  '\n\nBehavior rules:\n- First, ask ONE short clarifying question to better understand the situation. Keep it conversational.\n- After they answer (or if their description is already very detailed), give your recommendation.\n- Recommend 1-2 solutions max.\n- For each, explain in 2-3 sentences WHY it fits their specific situation.\n- Provide 3 sharp, client-ready talking points. Non-technical, punchy, peer-to-peer tone.\n- Always respond with valid JSON only — no text outside the JSON.\n\nFor a clarifying question use exactly:\n{"type":"clarification","question":"Your question here."}\n\nFor a recommendation use exactly:\n{"type":"recommendation","recommendations":[{"name":"Solution Name","why":"Why it fits in 2-3 sentences.","talkingPoints":["Point one","Point two","Point three"]}]}';
+var SYSTEM_PROMPT = 'You are an expert sales assistant for OpenX, a leading supply-side platform (SSP) in programmatic advertising. Your job is to help OpenX sales reps identify the best solution from the portfolio based on a client problem they describe.\n\nEach solution entry includes structured detail: the problem it solves, how it works, IDEAL CLIENT SIGNALS (the clearest indicators this solution fits the situation), what the client gets, and NOT A GOOD FIT IF disqualifiers. Use all of this to match precisely.\n\nAvailable solutions:\n\n' +
+  solutions.map(function(s,i){ return (i+1) + '. ' + s.name + ':\n' + s.fullDesc; }).join('\n\n---\n\n') +
+  '\n\nBehavior rules:\n- Read the IDEAL CLIENT SIGNALS carefully — these are your strongest matching criteria.\n- Read the NOT A GOOD FIT IF conditions — use these to disqualify poor matches before recommending.\n- Ask ONE focused clarifying question if you genuinely need more information to make a confident recommendation. Choose the question that would most change your answer. If the description already maps clearly to a solution, skip straight to the recommendation.\n- Recommend 1-2 solutions max. Never recommend a solution that hits a NOT A GOOD FIT IF condition.\n- For each recommendation, write 2-3 sentences explaining WHY it fits — reference specific signals from what the rep described.\n- Provide exactly 3 talking points per solution. Make them punchy, non-technical, and directly usable in a client conversation. Write them as things the sales rep can say out loud.\n- Tone: peer-to-peer, confident, direct. You are a knowledgeable colleague, not a formal assistant.\n- Always respond with valid JSON only — no text outside the JSON.\n\nFor a clarifying question:\n{"type":"clarification","question":"Your single question here."}\n\nFor a recommendation:\n{"type":"recommendation","recommendations":[{"name":"Exact Solution Name","why":"Why it fits in 2-3 sentences referencing their situation.","talkingPoints":["Point one","Point two","Point three"]}]}';
 
 async function callClaude(messages) {
   var response = await fetch('https://api.anthropic.com/v1/messages', {
